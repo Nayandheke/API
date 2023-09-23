@@ -5,6 +5,10 @@ const OrderDetail = model('OrderDetail', new Schema({
         type: Schema.Types.ObjectId,
         required: true,
     },
+    name: {
+        type: String,
+        required: true,
+    },
     productId: {
         type: Schema.Types.ObjectId,
         required: true,

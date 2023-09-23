@@ -143,9 +143,9 @@ class ProfileController {
                 }
             })
 
-            res.json({
+            res.json(
                 result
-            })
+            )
 
         } catch (err) {
             showError(err, next)
@@ -190,6 +190,7 @@ class ProfileController {
                 return{
                     _id: details._id,
                     orderId: details.orderId,
+                    name:details.name,
                     productId: details.productId,
                     qty: details.qty,
                     price: details.price,
@@ -204,6 +205,7 @@ class ProfileController {
             result.push({
                 _id: order._id,
                 userId: order.userId,
+                name:order.name,
                 status: order.status,
                 createdAt: order.createdAt,
                 updatedAt: order.updatedAt,
@@ -218,7 +220,9 @@ class ProfileController {
             showError(err,next)
             
         }
+        
     }
+    
 
 }
 

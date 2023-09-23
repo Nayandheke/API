@@ -7,27 +7,27 @@ class ReviewsController {
         try {
             const reviews = await Review.aggregate([
                 { $lookup: { from: 'products', localField: 'productId', foreignField: '_id', as: 'product' } },
-                { $lookup: {from: 'user', localField: 'userId', foreignField: '_id', as: 'user'}},
+                { $lookup: {from: 'users', localField: 'userId', foreignField: '_id', as: 'user'}},
             ]).exec()
 
             const result = reviews.map(review => {
                 return {
-                    "_id": review._id,
-                    "comment": review.comment,
-                    "rating": review.rating,
-                    "productId": review.productId,
-                    "userId": review.userId,
-                    "createdAt": review.createdAt,
-                    "updatedAt": review.updatedAt,
-                    "__v": review.__v,
+                    _id: review._id,
+                    comment: review.comment,
+                    rating: review.rating,
+                    productId: review.productId,
+                    userId: review.userId,
+                    createdAt: review.createdAt,
+                    updatedAt: review.updatedAt,
+                    __v: review.__v,
                     product: review.product[0],
                     user: review.user[0],
                 }
             })
 
-            res.json({
+            res.json(
                 result
-            })
+            )
 
         } catch (err) {
             showError(err, next)
